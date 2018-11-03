@@ -20,5 +20,6 @@ Scenario: Free CRM Login Test Scenario
 
     Examples:
        | username  | password |
+       | juned5252 | selenium8 |
        | juned5252 | selenium |
 

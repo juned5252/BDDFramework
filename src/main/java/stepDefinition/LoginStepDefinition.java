@@ -52,6 +52,22 @@ public class LoginStepDefinition {
         Assert.assertEquals(title,"CRMPRO");
     }
 
+    @Then("^user moves to new contact page$")
+    public void user_moves_to_new_contact_page() throws Throwable {
+       driver.switchTo().frame("mainpanel");
+       Actions actions = new Actions(driver);
+       actions.moveToElement(driver.findElement(By.xpath("//a[contains(text(),'Contacts')]"))).build().perform();
+       driver.findElement(By.xpath("//a[contains(text(),'New Contact')]")).click();
+    }
+
+    @Then("^user enters contacts \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void user_enters_contact_details(String first, String last, String position){
+        driver.findElement(By.id("first_name")).sendKeys(first);
+        driver.findElement(By.id("surname")).sendKeys(last);
+        driver.findElement(By.id("company_position")).sendKeys(position);
+        driver.findElement(By.xpath("//input[@type = 'submit' and @value = 'Save']")).click();
+    }
+
     @Then("^broswer gets closed$")
     public void broswer_gets_closed() throws Throwable {
         driver.quit();
