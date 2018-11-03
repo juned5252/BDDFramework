@@ -3,16 +3,15 @@ package stepDefinition;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+
+import java.util.concurrent.TimeUnit;
 
 public class LoginStepDefinition {
 
@@ -38,18 +37,9 @@ public class LoginStepDefinition {
        driver.findElement(By.name("password")).sendKeys("selenuim");
     }
 
-//    @Then("^user clicks on login button$")
-//    public void user_clicks_on_login_button(){
-//        // Write code here that turns the phrase above into concrete actions
-//        WebElement loginbtn = driver.findElement(By.cssSelector("[type='submit']"));
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("arguments[0].click();",loginbtn);
-//  }
-
     @Then("^user clicks on login button$")
 	 public void user_clicks_on_login_button() {
-	 WebElement loginBtn =
-	 driver.findElement(By.xpath("//input[@type='submit']"));
+	 WebElement loginBtn = driver.findElement(By.xpath("//input[@value = 'Login']"));
 	 JavascriptExecutor js = (JavascriptExecutor)driver;
 	 js.executeScript("arguments[0].click();", loginBtn);
 	 }
@@ -57,8 +47,13 @@ public class LoginStepDefinition {
     @Then("^user is on home page$")
     public void user_is_on_home_page(){
         // Write code here that turns the phrase above into concrete actions
-        WebDriverWait wait = new WebDriverWait(driver,5);
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
         String title = driver.getTitle();
         Assert.assertEquals(title,"CRMPRO");
+    }
+
+    @Then("^broswer gets closed$")
+    public void broswer_gets_closed() throws Throwable {
+        driver.quit();
     }
 }
