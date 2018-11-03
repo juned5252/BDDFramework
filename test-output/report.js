@@ -26,7 +26,7 @@ formatter.step({
 });
 formatter.step({
   "line": 7,
-  "name": "user enters username and pasword",
+  "name": "user enters \"juned5252\" and \"selenium\"",
   "keyword": "Then "
 });
 formatter.step({
@@ -48,42 +48,52 @@ formatter.match({
   "location": "LoginStepDefinition.user_already_on_login_page()"
 });
 formatter.result({
-  "duration": 6610195761,
+  "duration": 4899387975,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginStepDefinition.title_of_login_page_is_free_crm()"
 });
 formatter.result({
-  "duration": 19662816,
+  "duration": 135705280,
   "status": "passed"
 });
 formatter.match({
-  "location": "LoginStepDefinition.user_enters_username_and_pasword()"
+  "arguments": [
+    {
+      "val": "juned5252",
+      "offset": 13
+    },
+    {
+      "val": "selenium",
+      "offset": 29
+    }
+  ],
+  "location": "LoginStepDefinition.user_enters_username_and_pasword(String,String)"
 });
 formatter.result({
-  "duration": 588419339,
+  "duration": 591826722,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginStepDefinition.user_clicks_on_login_button()"
 });
 formatter.result({
-  "duration": 492831021,
+  "duration": 3159216072,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginStepDefinition.user_is_on_home_page()"
 });
 formatter.result({
-  "duration": 18930788,
-  "error_message": "java.lang.AssertionError: expected [CRMPRO] but found [#1 Free CRM software in the cloud for sales and service]\n\tat org.testng.Assert.fail(Assert.java:94)\n\tat org.testng.Assert.failNotEquals(Assert.java:513)\n\tat org.testng.Assert.assertEqualsImpl(Assert.java:135)\n\tat org.testng.Assert.assertEquals(Assert.java:116)\n\tat org.testng.Assert.assertEquals(Assert.java:190)\n\tat org.testng.Assert.assertEquals(Assert.java:200)\n\tat stepDefinition.LoginStepDefinition.user_is_on_home_page(LoginStepDefinition.java:52)\n\tat ✽.Then user is on home page(/Users/junedalam/Documents/FreeCrmBDDFramework/src/main/java/features/login.feature:9)\n",
-  "status": "failed"
+  "duration": 16888319,
+  "status": "passed"
 });
 formatter.match({
   "location": "LoginStepDefinition.broswer_gets_closed()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 150669132,
+  "status": "passed"
 });
 });
