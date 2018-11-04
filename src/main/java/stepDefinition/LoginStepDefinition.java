@@ -1,5 +1,6 @@
 package stepDefinition;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -11,11 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class LoginStepDefinition {
 
-    WebDriver driver;
+    public  static WebDriver driver;
 
      @Given("^user is already on login page$")
     public void user_already_on_login_page(){
@@ -66,6 +68,34 @@ public class LoginStepDefinition {
         driver.findElement(By.id("surname")).sendKeys(last);
         driver.findElement(By.id("company_position")).sendKeys(position);
         driver.findElement(By.xpath("//input[@type = 'submit' and @value = 'Save']")).click();
+    }
+
+    @Then("^user goes to the form page$")
+    public void user_goes_to_the_form_page() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.switchTo().frame("mainpanel");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.xpath("//a[contains(text(),'Forms')]"))).build().perform();
+        driver.findElement(By.xpath("//a[contains(text(),'New Form')]")).click();
+    }
+
+
+    @Then("^user enters title and page and email and desc and message1 and message2$")
+    public void user_enters_doc_details(DataTable details){
+        List<List<String>> data = details.raw();
+        driver.findElement(By.id("title")).sendKeys(data.get(0).get(0));
+        driver.findElement(By.id("pages")).clear();
+        driver.findElement(By.id("pages")).sendKeys(data.get(0).get(1));
+        driver.findElement(By.id("report_email")).sendKeys(data.get(0).get(2));
+        driver.findElement(By.name("description")).sendKeys(data.get(0).get(3));
+        driver.findElement(By.name("welcome_message")).sendKeys(data.get(0).get(4));
+        driver.findElement(By.name("confirmation_message")).sendKeys(data.get(0).get(5));
+    }
+
+    @Then("^user goes and clicks save$")
+    public void user_goes_and_clicks_save() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.findElement(By.xpath("//input[@value = 'Save']")).click();
     }
 
     @Then("^broswer gets closed$")
