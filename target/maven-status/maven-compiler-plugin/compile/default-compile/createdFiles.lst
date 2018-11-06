@@ -2,3 +2,5 @@ runner/TestRunner.class
 stepDefinition/LoginStepDefinition.class
 runner/ContactsRunner.class
 runner/DocsRunner.class
+stepDefinition/DocWithMapDefinition.class
+runner/DocMapRunner.class
